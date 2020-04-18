@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+<body>
+    <img class="banner" src="{% static 'images/make-a-dent-in-the-universe.png' %}" alt="">
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        Copyright 2020. All Rights Reserved!!
+    </footer>
+</body>
+</html>

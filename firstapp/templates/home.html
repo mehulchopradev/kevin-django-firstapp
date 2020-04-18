@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    My Home page 
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to my django app</h1>
+    {{message}}
+    <div class="menu">
+        <a href="{% url 'contactus' %}">Contact us</a>
+    </div> 
+{% endblock %}
