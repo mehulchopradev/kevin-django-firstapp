@@ -8,14 +8,16 @@
         {% block title %}
         {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'libapp/css/app.css' %}">
 </head>
 <body>
-    <img class="banner" src="{% static 'images/make-a-dent-in-the-universe.png' %}" alt="">
-    {% block content %}
-    {% endblock %}
+    <img src="{% static 'libapp/images/library-banner.jpg' %}" class="banner" alt="">
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
     <footer>
-        Copyright 2020. All Rights Reserved!!
+        All Rights Reserved 2020
     </footer>
 </body>
 </html>

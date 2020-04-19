@@ -1,0 +1,33 @@
+{% extends 'libapp/layout.html' %}
+
+{% block title %}
+    Register Here
+{% endblock %}
+
+{% block content %}
+    <h2>Register Here!</h2>
+    <form action="{% url 'libapp:saveuser' %}" method="POST">
+        {% csrf_token %}
+        <p>
+            <input type="text" name="username" placeholder="Enter Username">
+        </p>
+        <p>
+            <input type="password" name="password" placeholder="Enter Password">
+        </p>
+        <p>
+            Country:
+            <select name="country">
+                <option value="IN">India</option>
+                <option value="US">USA</option>
+            </select>
+        </p>
+        <p>
+            Gender:
+            <input type="radio" name="gender" value="M">Male&nbsp;
+            <input type="radio" name="gender" value="F">Female
+        </p>
+        <p>
+            <input type="submit" value="Register">
+        </p>
+    </form>
+{% endblock %}
