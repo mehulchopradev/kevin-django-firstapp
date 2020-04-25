@@ -10,13 +10,19 @@
             {{ message }}
         </p>
     {% endif %}
+    {% if error %}
+        <p class="error">
+            {{ error }}
+        </p>
+    {% endif %}
     <h2>Authenticate here!</h2>
-    <form action="">
+    <form action="{% url 'libapp:login' %}" method="POST">
+        {% csrf_token %}
         <p>
-            <input type="text" placeholder="Enter Username">
+            <input type="text" name="username" placeholder="Enter Username">
         </p>
         <p>
-            <input type="password" placeholder="Enter Password">
+            <input type="password" name="password" placeholder="Enter Password">
         </p>
         <p>
             <input type="submit" value="Login">

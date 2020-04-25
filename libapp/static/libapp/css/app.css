@@ -17,3 +17,9 @@ footer {
     font-weight: bold;
     padding: 20px;
 }
+
+.error {
+    background-color: red;
+    font-weight: bold;
+    padding: 20px;
+}
