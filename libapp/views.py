@@ -55,6 +55,10 @@ def auth(request):
     slist = Student.objects.filter(username=username, password=password)
     if slist:
         # valid username and password
+        student = slist[0]
+        session = request.session
+        session['username'] = student.username
+        session['userid'] = student.id
         return HttpResponseRedirect(reverse('libapp:privatehome'))
     else:
         # invalid username or password

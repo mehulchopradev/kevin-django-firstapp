@@ -5,13 +5,18 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Welcome</h2>
+    <h2>Welcome {{ username }}
+        <a href="{% url 'libapp:logout' %}">Logout</a>
+    </h2>
     <table border="1">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>Price</th>
                 <th>Pages</th>
+                <th>Publication House</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +25,17 @@
                     <td>{{ book.title }}</td>
                     <td>{{ book.price }}</td>
                     <td>{{ book.pages }}</td>
+                    <td>{{ book.publication_house.name }}</td>
+                    <td><a href="{% url 'libapp:bookdetails' book.id %}">Details</a></td>
+                    <td>
+                        {% if book.cannot_issue %}
+                            <i>Off the shelve!</i>
+                        {% elif book.is_issued %}
+                            <a href="{% url 'libapp:returnbook' book.id %}">Return Book</a>
+                        {% else %}
+                            <a href="">Issue Book</a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -1,0 +1,30 @@
+{% extends 'libapp/layout.html' %}
+
+{% block title %}
+    Welcome User :: Library Management
+{% endblock %}
+
+{% block content %}
+    <h2>Welcome {{ username }}
+        <a href="{% url 'libapp:logout' %}">Logout</a>
+    </h2>
+    <h2>{{ book.title }}</h2>
+    <i>Price:</i><b>{{ book.price }}</b><br>
+    <i>Pages:</i><b>{{book.pages}}</b><br>
+    <hr>
+    <h3>Publication Details</h3>
+    <i>{{book.publication_house.name}}</i><br>
+    <i>Ratings:</i><b>{{book.publication_house.ratings}}</b>
+    <hr>
+    <h3>Reviews</h3>
+    {% if book.review_set.all %}
+        {% for review in book.review_set.all %}
+            <div>
+                <p>{{ review.description }}</p>
+                <i>{{ review.full_name }}</i>
+            </div>
+        {% endfor %}
+    {% else %}
+            <i>No Reviews yet</i>
+    {% endif %}
+{% endblock %}
