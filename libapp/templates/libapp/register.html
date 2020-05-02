@@ -6,9 +6,14 @@
 
 {% block content %}
     <h2>Register Here!</h2>
-    <form action="{% url 'libapp:saveuser' %}" method="POST">
+    {% if error %}
+        <p class="error">
+            {{ error }}
+        </p>
+    {% endif %}
+    <form action="{% url 'libapp:saveuser' %}" method="POST" novalidate="novalidate">
         {% csrf_token %}
-        <p>
+        <!-- <p>
             <input type="text" name="username" placeholder="Enter Username">
         </p>
         <p>
@@ -25,7 +30,8 @@
             Gender:
             <input type="radio" name="gender" value="m">Male&nbsp;
             <input type="radio" name="gender" value="f">Female
-        </p>
+        </p> -->
+        {{ form.as_p }}
         <p>
             <input type="submit" value="Register">
         </p>

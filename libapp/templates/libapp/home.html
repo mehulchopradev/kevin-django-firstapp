@@ -16,17 +16,19 @@
         </p>
     {% endif %}
     <h2>Authenticate here!</h2>
-    <form action="{% url 'libapp:login' %}" method="POST">
+    <form action="{% url 'libapp:login' %}" method="POST" novalidate="novalidate">
         {% csrf_token %}
-        <p>
+        <!-- <p>
             <input type="text" name="username" placeholder="Enter Username">
         </p>
         <p>
             <input type="password" name="password" placeholder="Enter Password">
-        </p>
+        </p> -->
+        {{ form.as_p }}
         <p>
             <input type="submit" value="Login">
             <a href="{% url 'libapp:register' %}">New user ? Sign Up</a>
         </p>
     </form>
+    <a href="{% url 'libapp:contactus' %}">Contact us</a>
 {% endblock %}

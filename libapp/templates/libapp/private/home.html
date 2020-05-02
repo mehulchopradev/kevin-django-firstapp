@@ -33,7 +33,7 @@
                         {% elif book.is_issued %}
                             <a href="{% url 'libapp:returnbook' book.id %}">Return Book</a>
                         {% else %}
-                            <a href="">Issue Book</a>
+                            <a href="{% url 'libapp:issuebook' book.id %}">Issue Book</a>
                         {% endif %}
                     </td>
                 </tr>

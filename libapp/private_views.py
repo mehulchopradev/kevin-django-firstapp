@@ -73,4 +73,15 @@ def return_book(request, bookid):
 
     return HttpResponseRedirect(reverse('libapp:privatehome'))
 
+def issue_book(request, bookid):
+    session = request.session
+    if 'username' not in session:
+        return HttpResponseRedirect(reverse('libapp:home'))
+    
+    userid = session['userid']
+    book = Book.objects.get(id=bookid)
+    book.students.add(userid)
+
+    return HttpResponseRedirect(reverse('libapp:privatehome'))
+
     
