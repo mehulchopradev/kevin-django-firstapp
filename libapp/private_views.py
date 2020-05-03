@@ -26,6 +26,7 @@ def show_home(request):
     username = session['username']
     userid = session['userid']
 
+    # will break with the new many to many style
     for book in blist:
         students = book.students.all()
         for student in students:
@@ -62,6 +63,7 @@ def logout(request):
     request.session.flush()
     return HttpResponseRedirect(reverse('libapp:home'))
 
+# will break with the new many to many style
 def return_book(request, bookid):
     session = request.session
     if 'username' not in session:
@@ -73,6 +75,7 @@ def return_book(request, bookid):
 
     return HttpResponseRedirect(reverse('libapp:privatehome'))
 
+# will break with the new many to many style
 def issue_book(request, bookid):
     session = request.session
     if 'username' not in session:
