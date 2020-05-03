@@ -3,12 +3,18 @@ from datetime import date
 
 # Create your models here.
 
+def upload_profile_pic(student, filename):
+    # return a string from this function that should be the path on the server hard drive
+    # where the uploaded image will be saved
+    return 'images/profile/{0}/{1}_{2}'.format(student.username, student.username, filename)
+
 class Student(models.Model):
     # id
     username = models.CharField(unique=True, max_length=50, null=False, blank=False)
     password = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=3, null=True)
     gender = models.CharField(max_length=1, null=False)
+    profilepicpath = models.ImageField(null=True, max_length=100, blank=True, upload_to=upload_profile_pic)
 
     # a student can issue more than 1 book (one to many) -- many to many
 
@@ -31,7 +37,7 @@ class Book(models.Model):
     no_of_copies = models.IntegerField(null=False)
     published_date = models.DateField(null=True, default=date.today())
     publication_house = models.ForeignKey(PublicationHouse, on_delete=models.CASCADE)
-    students = models.ManyToManyField(Student)
+    students = models.ManyToManyField(Student, through='BooksIssued')
 
     # a book can be issued to more than one student (one to many) -- many to many
 
@@ -50,3 +56,10 @@ class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     # A review can be associated with a specific book (many to one)
+
+class BooksIssued(models.Model):
+    # id
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    issue_date = models.DateField(null=False)
+    return_date = models.DateField(null=True)

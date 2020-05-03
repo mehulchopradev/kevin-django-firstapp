@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from libapp.views import show_home, show_register, save_user, auth, login_form, register_form,\
     RegisterFormView
 from libapp.private_views import show_home as private_home, show_book, logout, return_book,\
-    issue_book
+    issue_book, get_profile_pic
 
 
 # libmgmt/
@@ -27,5 +27,6 @@ urlpatterns = [
     path('private/logout', logout, name='logout'),
     path('private/return-book/<int:bookid>', return_book, name='returnbook'),
     path('private/issue-book/<int:bookid>', issue_book, name='issuebook'),
-    path('contact-us/', TemplateView.as_view(template_name='libapp/contact.html'), name='contactus')
+    path('contact-us/', TemplateView.as_view(template_name='libapp/contact.html'), name='contactus'),
+    path('profile-pic/', get_profile_pic, name='profilepic')
 ]

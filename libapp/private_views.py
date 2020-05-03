@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from libapp.models import Book
 
 ''' def show_home(request):
@@ -84,4 +84,13 @@ def issue_book(request, bookid):
 
     return HttpResponseRedirect(reverse('libapp:privatehome'))
 
-    
+def get_profile_pic(request):
+    session = request.session
+    profilepicpath = session['profilepicpath']
+
+    if not profilepicpath:
+        path = '/home/mehul/Documents/training/django/media/no-image.png'
+    else:
+        path = profilepicpath
+    with open(path, mode='rb') as fp:
+        return HttpResponse(fp.read(), content_type='image/*')

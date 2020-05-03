@@ -128,6 +128,10 @@ def login_form(request):
                 session = request.session
                 session['username'] = student.username
                 session['userid'] = student.id
+                try:
+                    session['profilepicpath'] = student.profilepicpath.path
+                except:
+                    session['profilepicpath'] = None
                 return HttpResponseRedirect(reverse('libapp:privatehome'))
             else:
                 # invalid username or password
@@ -167,10 +171,11 @@ class RegisterFormView(FormView):
     form_class = RegisterForm
 
     def form_valid(self, regform):
-        cleaned_data = regform.cleaned_data
-        s = Student(**cleaned_data)
+        # cleaned_data = regform.cleaned_data
+        # s = Student(**cleaned_data)
         try:
-            s.save()
+            # s.save()
+            regform.save()
         except Exception:
             context_data = {
                 'error': 'Some error during registration',
